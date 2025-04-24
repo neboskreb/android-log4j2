@@ -1,0 +1,51 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:base"
+  ],
+  "ignorePaths": [],
+  "dependencyDashboard": true,
+
+  "packageRules": [
+    {
+      "matchPackagePatterns": ["androidx.room"],
+      "groupName": "Android Room plugin & library"
+    },
+    {
+      "matchPackagePatterns": ["com.android.library", "com.android.application"],
+      "groupName": "Android Gradle plugin"
+    },
+    {
+      "matchPackagePatterns": ["^org.igniterealtime.smack:smack"],
+      "groupName": "Smack"
+    },
+    {
+      "matchPackagePatterns": ["^com.google.dagger:dagger"],
+      "groupName": "Dagger"
+    },
+    {
+      "matchPackagePatterns": ["^androidx.navigation:navigation"],
+      "groupName": "Android navigation"
+    },
+    {
+      "matchPackagePatterns": ["^androidx.fragment:fragment"],
+      "groupName": "Android fragment testing"
+    },
+    {
+      "matchPackagePatterns": ["^org.mockito:mockito"],
+      "groupName": "mockito"
+    },
+    {
+      "matchPackagePatterns": ["^org.junit.jupiter:junit", "^org.junit:junit-bom"],
+      "groupName": "junit5"
+    },
+    {
+      "matchPackagePatterns": ["^com.google.protobuf"],
+      "groupName": "protobuf"
+    },
+    {
+      "matchPackagePatterns": ["^org.greenrobot:eventbus"],
+      "groupName": "eventbus"
+    }
+  ]
+}

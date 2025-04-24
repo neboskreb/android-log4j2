@@ -1,0 +1,105 @@
+plugins {
+    id 'com.android.library'
+    id 'de.mannodermaus.android-junit5'
+    id 'maven-publish'
+}
+
+group = 'io.github.neboskreb'
+version = '2.24-SNAPSHOT'
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from(components["release"])
+                artifactId = 'android-log4j2'
+            }
+        }
+
+        repositories {
+            maven {
+                name = "github-packages"
+                credentials {
+                    username = "${github_packages_user}"
+                    password = "${github_packages_token}"
+                }
+                url = "https://maven.pkg.github.com/neboskreb/irriga"
+            }
+        }
+    }
+}
+
+android {
+    namespace = 'com.github.neboskreb.log4j2'
+    compileSdk = 35
+
+    defaultConfig {
+        minSdk = 26
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+    }
+
+    publishing {
+        singleVariant("release") {
+            withJavadocJar()
+            withSourcesJar()
+        }
+    }
+}
+
+dependencies {
+    implementation 'androidx.annotation:annotation:1.9.1'
+    implementation 'com.google.code.findbugs:jsr305:3.0.2'
+    // ==== Log4j
+    //noinspection GradleDependency
+    api 'org.apache.logging.log4j:log4j-slf4j2-impl:[2.24, 3.0)'
+    //noinspection GradleDependency, AnnotationProcessorOnCompilePath
+    api 'org.apache.logging.log4j:log4j-core:[2.24, 3.0)'
+//    annotationProcessor 'org.apache.logging.log4j:log4j-core:[2.24, 3.0)'
+    // ==== /Log4j
+
+    // ==== Lombok
+    //noinspection AnnotationProcessorOnCompilePath -- because Lombok annotations are contained in this package, so you get import errors without it
+    compileOnly 'org.projectlombok:lombok:1.18.38'
+    annotationProcessor 'org.projectlombok:lombok:1.18.38'
+    // ==== /Lombok
+
+
+    testImplementation platform('org.junit:junit-bom:5.12.2')
+    testImplementation 'org.junit.jupiter:junit-jupiter-api'
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly    'org.junit.platform:junit-platform-launcher'
+    testImplementation 'org.mockito:mockito-core:5.17.0'
+    testImplementation 'org.mockito:mockito-junit-jupiter:5.17.0'
+    testImplementation 'org.mockito:mockito-core:5.17.0'
+    testImplementation 'org.mockito:mockito-junit-jupiter:5.17.0'
+    testImplementation 'org.assertj:assertj-core:3.27.3'
+
+
+    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
+    androidTestImplementation platform('org.junit:junit-bom:5.12.2')
+    androidTestImplementation 'org.junit.jupiter:junit-jupiter-api'
+    androidTestImplementation 'org.junit.jupiter:junit-jupiter'
+    androidTestImplementation 'org.junit.platform:junit-platform-launcher'
+    androidTestImplementation 'org.mockito:mockito-android:5.17.0'
+    androidTestImplementation 'org.mockito:mockito-junit-jupiter:5.17.0'
+    androidTestImplementation 'androidx.arch.core:core-testing:2.2.0'
+    androidTestImplementation 'org.assertj:assertj-core:3.27.3'
+}
