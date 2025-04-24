@@ -43,6 +43,14 @@ public final class LogcatAppender extends AbstractAppender {
         layout = requireNonNullElseGet(layout, PatternLayout::createDefaultLayout);
         boolean useNative = shouldUseNativeStackTraceRendering(stackTraceRendering);
 
+        if (!useNative) {
+            boolean success = WorkaroundSecurityManagerNPE.applyIfNeeded();
+            if (!success) {
+                // Force rendering the stack trace by Logcat
+                useNative = true;
+            }
+        }
+
         return new LogcatAppender(name, filter, layout, ignoreExceptions, properties, useNative);
     }
 
