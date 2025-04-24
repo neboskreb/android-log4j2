@@ -22,6 +22,8 @@ public class AndroidLog4jHelper {
         savedContext = new ContextProxy();
 
         System.setProperty("Log4jContextSelector", "net.loune.log4j2android.AndroidContextSelector");
+// FIXME Remove this once 2.24.0 is released
+// https://github.com/apache/logging-log4j2/issues/2774#issuecomment-2254418643
         System.setProperty("log4j2.disable.jmx", "true");
 
         injectPlugins("net.loune.log4j2android", AndroidLookup.class, LogcatAppender.class);
