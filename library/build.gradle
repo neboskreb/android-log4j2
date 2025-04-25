@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'io.github.neboskreb'
-version = '2.24-SNAPSHOT'
+version = '2.24'
 
 afterEvaluate {
     publishing {
