@@ -42,7 +42,7 @@ android {
 
 dependencies {
     implementation(project(":examples:lib"))
-    implementation(project(":library"))
+    implementation 'io.github.neboskreb:android-log4j2:2.24'
 
     implementation 'androidx.appcompat:appcompat:1.7.0'
 //    implementation 'com.android.support:design:28.0.0'
@@ -60,7 +60,7 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testImplementation 'org.junit.platform:junit-platform-launcher'
 
-    androidTestImplementation testFixtures(project(":library"))
+    androidTestImplementation 'io.github.neboskreb:android-log4j2-junit5:2.24'
     androidTestImplementation 'androidx.test.ext:junit:1.2.1'
     androidTestImplementation platform('org.junit:junit-bom:5.12.2')
     androidTestImplementation "org.junit.jupiter:junit-jupiter-api"

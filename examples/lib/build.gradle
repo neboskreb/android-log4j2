@@ -42,15 +42,14 @@ dependencies {
     // ==== /Lombok
 
 
-    testImplementation(project(":library"))
+    testImplementation 'io.github.neboskreb:android-log4j2:2.24'
     testImplementation platform('org.junit:junit-bom:5.12.2')
     testImplementation 'org.junit.jupiter:junit-jupiter-api'
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testRuntimeOnly    'org.junit.platform:junit-platform-launcher'
 
 
-    androidTestImplementation(project(":library"))
-    androidTestImplementation testFixtures(project(":library"))
+    androidTestImplementation 'io.github.neboskreb:android-log4j2-junit5:2.24'
     androidTestImplementation 'androidx.test:core:1.6.1'
     androidTestImplementation 'androidx.test:runner:1.6.2'
     androidTestImplementation 'androidx.test.ext:junit:1.2.1'

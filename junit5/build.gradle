@@ -12,7 +12,7 @@ afterEvaluate {
         publications {
             release(MavenPublication) {
                 from(components["release"])
-                artifactId = 'android-log4j2'
+                artifactId = 'android-log4j2-junit5'
             }
         }
 
@@ -65,38 +65,16 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.annotation:annotation:1.9.1'
-    implementation 'com.google.code.findbugs:jsr305:3.0.2'
-    // ==== Log4j
-    //noinspection GradleDependency
-    api 'org.apache.logging.log4j:log4j-slf4j2-impl:[2.24, 3.0)'
-    //noinspection GradleDependency, AnnotationProcessorOnCompilePath
-    api 'org.apache.logging.log4j:log4j-core:[2.24, 3.0)'
-//    annotationProcessor 'org.apache.logging.log4j:log4j-core:[2.24, 3.0)'
-    // ==== /Log4j
-
-    // ==== Lombok
-    //noinspection AnnotationProcessorOnCompilePath -- because Lombok annotations are contained in this package, so you get import errors without it
-    compileOnly 'org.projectlombok:lombok:1.18.38'
-    annotationProcessor 'org.projectlombok:lombok:1.18.38'
-    // ==== /Lombok
-
-
-    testImplementation platform('org.junit:junit-bom:5.12.2')
-    testImplementation 'org.junit.jupiter:junit-jupiter-api'
-    testImplementation 'org.junit.jupiter:junit-jupiter'
-    testRuntimeOnly    'org.junit.platform:junit-platform-launcher'
-    testImplementation 'org.mockito:mockito-core:5.17.0'
-    testImplementation 'org.mockito:mockito-junit-jupiter:5.17.0'
-    testImplementation 'org.assertj:assertj-core:3.27.3'
-
+    api 'io.github.neboskreb:android-log4j2:2.24'
+    compileOnly 'androidx.test.ext:junit:1.2.1'
+    compileOnly platform('org.junit:junit-bom:5.12.2')
+    compileOnly 'org.junit.jupiter:junit-jupiter-api'
+    compileOnly 'org.junit.jupiter:junit-jupiter'
+    compileOnly 'org.junit.platform:junit-platform-launcher'
 
     androidTestImplementation 'androidx.test.ext:junit:1.2.1'
     androidTestImplementation platform('org.junit:junit-bom:5.12.2')
     androidTestImplementation 'org.junit.jupiter:junit-jupiter-api'
     androidTestImplementation 'org.junit.jupiter:junit-jupiter'
     androidTestImplementation 'org.junit.platform:junit-platform-launcher'
-    androidTestImplementation 'org.mockito:mockito-android:5.17.0'
-    androidTestImplementation 'org.mockito:mockito-junit-jupiter:5.17.0'
-    androidTestImplementation 'org.assertj:assertj-core:3.27.3'
 }
