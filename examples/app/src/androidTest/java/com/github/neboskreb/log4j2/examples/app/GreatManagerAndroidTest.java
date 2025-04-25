@@ -1,17 +1,12 @@
 package com.github.neboskreb.log4j2.examples.app;
 
-import androidx.test.platform.app.InstrumentationRegistry;
 import com.github.neboskreb.log4j2.examples.lib.AwesomeWorker;
-import net.loune.log4j2android.AndroidLog4jHelper;
-import org.junit.jupiter.api.BeforeAll;
+import net.loune.log4j2android.AndroidLog4jExtension;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
+@ExtendWith(AndroidLog4jExtension.class)
 public class GreatManagerAndroidTest {
-    @BeforeAll
-    public static void beforeAll() {
-        AndroidLog4jHelper.initialize(InstrumentationRegistry.getInstrumentation());
-    }
-
 
     @Test
     public void onLogFatalMessageClicked() {

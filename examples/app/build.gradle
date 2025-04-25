@@ -60,7 +60,7 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testImplementation 'org.junit.platform:junit-platform-launcher'
 
-
+    androidTestImplementation testFixtures(project(":library"))
     androidTestImplementation 'androidx.test.ext:junit:1.2.1'
     androidTestImplementation platform('org.junit:junit-bom:5.12.2')
     androidTestImplementation "org.junit.jupiter:junit-jupiter-api"
