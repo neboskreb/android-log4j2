@@ -47,6 +47,10 @@ android {
         }
     }
 
+    testFixtures {
+        enable = true
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
@@ -80,6 +84,15 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.38'
     annotationProcessor 'org.projectlombok:lombok:1.18.38'
     // ==== /Lombok
+
+
+    testFixturesImplementation 'androidx.test.ext:junit:1.2.1'
+    testFixturesImplementation 'androidx.annotation:annotation:1.9.1'
+    testFixturesImplementation 'com.google.code.findbugs:jsr305:3.0.2'
+    testFixturesImplementation platform('org.junit:junit-bom:5.12.2')
+    testFixturesImplementation 'org.junit.jupiter:junit-jupiter-api'
+    testFixturesImplementation 'org.junit.jupiter:junit-jupiter'
+    testFixturesRuntimeOnly    'org.junit.platform:junit-platform-launcher'
 
 
     testImplementation platform('org.junit:junit-bom:5.12.2')
