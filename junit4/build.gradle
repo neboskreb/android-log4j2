@@ -1,0 +1,76 @@
+plugins {
+    id 'com.android.library'
+    id 'de.mannodermaus.android-junit5'
+    id 'maven-publish'
+}
+
+group = 'io.github.neboskreb'
+version = '2.24.1-SNAPSHOT'
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from(components["release"])
+                artifactId = 'android-log4j2-junit4'
+            }
+        }
+
+        repositories {
+            maven {
+                name = "github-packages"
+                credentials {
+                    username = "${github_packages_user}"
+                    password = "${github_packages_token}"
+                }
+                url = "https://maven.pkg.github.com/neboskreb/irriga"
+            }
+        }
+    }
+}
+
+android {
+    namespace = 'com.github.neboskreb.log4j2'
+    compileSdk = 35
+
+    defaultConfig {
+        minSdk = 26
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+    }
+
+    publishing {
+        singleVariant("release") {
+            withJavadocJar()
+            withSourcesJar()
+        }
+    }
+}
+
+dependencies {
+    api 'io.github.neboskreb:android-log4j2:2.24'
+    compileOnly 'androidx.test.ext:junit:1.2.1'
+    compileOnly 'junit:junit:4.13.2'
+
+
+    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
+    androidTestImplementation 'androidx.test:runner:1.6.2'
+    androidTestImplementation 'junit:junit:4.13.2'
+}
