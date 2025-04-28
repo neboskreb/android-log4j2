@@ -192,6 +192,34 @@ class MyClass {
 ```
 
 
+# Migrating from Log to Slf4J
+
+The least invasive way to migrate your existing code from native `Log` is to use log wrapper.
+
+Assume you had lines like this all over your class:
+```kotlin
+class MyClass {
+   private val tag = "MY_TAG"
+
+   fun doSomething() {
+       Log.d(tag, "message")
+   }
+}
+```
+
+Replacing the Log from Android with the Log from the wrapper package allows you to reduce the changes to absolute minimum: 
+```kotlin
+import io.github.neboskreb.android.Log
+
+class MyClass {
+   private val tag = MarkerFactory.getMarker("MY_TAG")
+
+   fun doSomething() {
+       Log.d(tag, "message")
+   }
+}
+```
+
 
 # Pinning the Log4J version
 
