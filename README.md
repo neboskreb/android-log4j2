@@ -8,6 +8,7 @@ Yet another one. But this one works.
 * Separate configurations for Debug, Release, JUnit tests, and Android tests 
 * Extension for JUnit 5
 * Rule for JUnit 4
+* Easy migration from Android Log
 
 The example section shows the usage of SLF4J facade on the lib side and the log control using Log4J2 on the app side.
 
@@ -190,6 +191,19 @@ class MyClass {
    }
 }
 ```
+
+
+# Migrating from Android's Log
+
+Package `android-log4j2-migration` offers the replacement class for Android's `Log` for quick migration. 
+
+```groovy
+dependencies {
+    implementation 'io.github.neboskreb:android-log4j2-migration:2.0'
+}
+```
+
+See article [Migration](doc/migration/README.md) for more details.
 
 
 
