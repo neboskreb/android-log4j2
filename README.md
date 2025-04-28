@@ -158,6 +158,38 @@ Select which engine to use for rendering the stack trace when logging the except
 
 Options: `logcat` (default), `log4j2`
 
+# Logcat tags
+Tags in logcat are supported via `Markers`:
+```kotlin
+import org.slf4j.MarkerFactory
+import org.slf4j.LoggerFactory
+
+class MyClass {
+   private val tag = MarkerFactory.getMarker("MY_TAG")
+   private val log = LoggerFactory.getLogger(MyClass::class.java)
+
+   fun doSomething() {
+       log.debug(tag, "something")
+   }
+}
+```
+
+Markers are optional. If no marker provided, the tag defaults to the logger name (i.e., "my.package.MyClass" in this case).
+
+The following trick gives you more filtering abilities:
+```kotlin
+class MyClass {
+   private val log = LoggerFactory.getLogger("MY_TAG")
+   private val attention = MarkerFactory.getMarker("MY_TAG:ATT")
+   private val error = MarkerFactory.getMarker("MY_TAG:ERR")
+
+   fun doSomething() {
+       log.debug("something boring")
+       log.debug(attention, "something abnormal")
+       log.debug(error, "something bad")
+   }
+}
+```
 
 # Known issues
 * XML configuration is broken due to bug in Android XML parser. Fix is in progress; for now use `.properties` configuration.
