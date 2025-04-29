@@ -7,7 +7,7 @@ plugins {
 
 def libraryGroup    = 'io.github.neboskreb'
 def libraryArtifact = 'android-log4j2'
-def libraryVersion  = '2.24.1-SNAPSHOT'
+def libraryVersion  = '2.24'
 
 afterEvaluate {
     publishing {
