@@ -191,6 +191,23 @@ class MyClass {
 }
 ```
 
+
+
+# Pinning the Log4J version
+
+In your _application_, when you include library Android Log4J it will bring the latest version of Log4J as a transitive dependency. So theoretically, including only `io.github.neboskreb:android-log4j2:xxx` is enough. However, for better determinism it's always better to pin down the exact version of Log4J:
+```groovy
+dependencies {
+    implementation 'io.github.neboskreb:android-log4j2:2.24'
+    // Though android-log4j2 brings Log4J2 in as a transitive dependency, 
+    // it is always a good idea to pin the exact version:
+    implementation 'org.apache.logging.log4j:log4j-core:2.24.3'
+    implementation 'org.apache.logging.log4j:log4j-slf4j2-impl:2.24.3'
+}
+```
+
+Note: in your _library_, you should NOT include any specific version of Log4J because that might create dependency conflict in the consumer of your library.
+
 # Known issues
 * XML configuration is broken due to bug in Android XML parser. Fix is in progress; for now use `.properties` configuration.
 
