@@ -6,8 +6,8 @@ pluginManagement {
     }
 
     plugins {
-        id 'com.android.application' version '8.10.1'
-        id 'com.android.library' version '8.10.1'
+        id 'com.android.application' version '8.11.0'
+        id 'com.android.library' version '8.11.0'
         id 'de.mannodermaus.android-junit5' version '1.13.0.0'
     }
 }
