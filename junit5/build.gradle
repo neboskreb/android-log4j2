@@ -114,13 +114,13 @@ android {
 dependencies {
     api 'io.github.neboskreb:android-log4j2:2.24'
     compileOnly 'androidx.test.ext:junit:1.2.1'
-    compileOnly platform('org.junit:junit-bom:5.13.2')
+    compileOnly platform('org.junit:junit-bom:5.13.3')
     compileOnly 'org.junit.jupiter:junit-jupiter-api'
     compileOnly 'org.junit.jupiter:junit-jupiter'
     compileOnly 'org.junit.platform:junit-platform-launcher'
 
     androidTestImplementation 'androidx.test.ext:junit:1.2.1'
-    androidTestImplementation platform('org.junit:junit-bom:5.13.2')
+    androidTestImplementation platform('org.junit:junit-bom:5.13.3')
     androidTestImplementation 'org.junit.jupiter:junit-jupiter-api'
     androidTestImplementation 'org.junit.jupiter:junit-jupiter'
     androidTestImplementation 'org.junit.platform:junit-platform-launcher'
