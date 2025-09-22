@@ -135,7 +135,7 @@ dependencies {
     testRuntimeOnly    'org.junit.platform:junit-platform-launcher'
     testImplementation 'org.mockito:mockito-core:5.18.0'
     testImplementation 'org.mockito:mockito-junit-jupiter:5.18.0'
-    testImplementation 'org.assertj:assertj-core:3.27.3'
+    testImplementation 'org.assertj:assertj-core:3.27.6'
 
 
     androidTestImplementation 'androidx.test.ext:junit:1.2.1'
@@ -145,5 +145,5 @@ dependencies {
     androidTestImplementation 'org.junit.platform:junit-platform-launcher'
     androidTestImplementation 'org.mockito:mockito-android:5.18.0'
     androidTestImplementation 'org.mockito:mockito-junit-jupiter:5.18.0'
-    androidTestImplementation 'org.assertj:assertj-core:3.27.3'
+    androidTestImplementation 'org.assertj:assertj-core:3.27.6'
 }
