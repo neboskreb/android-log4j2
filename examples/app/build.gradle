@@ -54,8 +54,8 @@ dependencies {
 
     // ==== Lombok
     //noinspection AnnotationProcessorOnCompilePath -- because Lombok annotations are contained in this package, so you get import errors without it
-    compileOnly 'org.projectlombok:lombok:1.18.38'
-    annotationProcessor 'org.projectlombok:lombok:1.18.38'
+    compileOnly 'org.projectlombok:lombok:1.18.42'
+    annotationProcessor 'org.projectlombok:lombok:1.18.42'
     // ==== /Lombok
 
 
