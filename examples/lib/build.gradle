@@ -50,7 +50,7 @@ dependencies {
 
 
     androidTestImplementation 'io.github.neboskreb:android-log4j2-junit5:2.24'
-    androidTestImplementation 'androidx.test:core:1.6.1'
+    androidTestImplementation 'androidx.test:core:1.7.0'
     androidTestImplementation 'androidx.test:runner:1.7.0'
     androidTestImplementation 'androidx.test.ext:junit:1.2.1'
     androidTestImplementation platform('org.junit:junit-bom:5.14.0')
