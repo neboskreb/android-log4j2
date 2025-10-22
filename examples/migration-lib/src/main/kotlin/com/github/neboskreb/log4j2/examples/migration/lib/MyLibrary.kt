@@ -1,6 +1,6 @@
 package com.github.neboskreb.log4j2.examples.migration.lib
 
-import android.util.Log
+import com.github.neboskreb.log4j2.migration.Log
 
 private const val TAG = "MY_LIBRARY"
 

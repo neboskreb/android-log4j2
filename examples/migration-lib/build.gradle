@@ -36,15 +36,20 @@ android {
 }
 
 dependencies {
+    implementation 'io.github.neboskreb:android-log4j2-migration:2.0'
+    implementation 'org.slf4j:slf4j-api:2.0.17'
+    implementation 'org.slf4j:slf4j-ext:2.0.17'
     implementation 'androidx.core:core-ktx:1.17.0'
 
 
+    testImplementation 'io.github.neboskreb:android-log4j2:2.24'
     testImplementation platform('org.junit:junit-bom:5.12.2')
     testImplementation 'org.junit.jupiter:junit-jupiter-api'
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testRuntimeOnly    'org.junit.platform:junit-platform-launcher'
 
 
+    androidTestImplementation 'io.github.neboskreb:android-log4j2-junit5:2.24'
     androidTestImplementation platform('org.junit:junit-bom:5.12.2')
     androidTestImplementation 'org.junit.jupiter:junit-jupiter-api'
     androidTestImplementation 'org.junit.jupiter:junit-jupiter'
