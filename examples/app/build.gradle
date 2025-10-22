@@ -1,16 +1,19 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     id 'com.android.application'
     id 'de.mannodermaus.android-junit5'
+    id 'org.jetbrains.kotlin.android'
 }
 
 android {
     namespace = 'com.github.neboskreb.log4j2.examples.app'
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId "com.github.neboskreb.log4j2.examples.app"
-        minSdk = 27
-        targetSdk = 35
+        minSdk = 26
+        targetSdk = 36
         versionCode 1
         versionName "1.0"
 
@@ -38,6 +41,12 @@ android {
         exclude 'META-INF/DEPENDENCIES'
         exclude 'META-INF/LICENSE*'
     }
+
+    kotlin {
+        compilerOptions {
+            jvmTarget = JvmTarget.JVM_17
+        }
+    }
 }
 
 dependencies {
@@ -51,12 +60,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.7.1'
 //    implementation 'com.android.support:design:28.0.0'
     implementation 'com.google.android.material:material:1.13.0'
-
-    // ==== Lombok
-    //noinspection AnnotationProcessorOnCompilePath -- because Lombok annotations are contained in this package, so you get import errors without it
-    compileOnly 'org.projectlombok:lombok:1.18.42'
-    annotationProcessor 'org.projectlombok:lombok:1.18.42'
-    // ==== /Lombok
+    implementation 'androidx.core:core-ktx:1.17.0'
 
 
     testImplementation platform('org.junit:junit-bom:5.14.0')
