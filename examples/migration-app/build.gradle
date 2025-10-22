@@ -47,4 +47,11 @@ android {
 dependencies {
     implementation(project(":examples:migration-lib"))
     implementation 'androidx.core:core-ktx:1.17.0'
+
+    implementation 'io.github.neboskreb:android-log4j2-migration:2.0'
+    implementation 'io.github.neboskreb:android-log4j2:2.24'
+    // Though android-log4j2 brings Log4J2 in as a transitive dependency,
+    // it is always a good idea to pin the exact version:
+    implementation 'org.apache.logging.log4j:log4j-core:2.24.3'
+    implementation 'org.apache.logging.log4j:log4j-slf4j2-impl:2.24.3'
 }

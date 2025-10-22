@@ -2,7 +2,7 @@ package com.github.neboskreb.log4j2.examples.migration
 
 import android.app.Activity
 import android.os.Bundle
-import android.util.Log
+import com.github.neboskreb.log4j2.migration.Log
 
 import com.github.neboskreb.log4j2.examples.migration.lib.MyLibrary
 
