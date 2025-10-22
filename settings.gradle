@@ -26,5 +26,6 @@ rootProject.name = "ANDROID LOG4J2"
 include ':library'
 include ':junit4'
 include ':junit5'
+include ':migration'
 include ':examples:app'
 include ':examples:lib'

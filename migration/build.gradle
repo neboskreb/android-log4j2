@@ -1,0 +1,118 @@
+plugins {
+    id 'com.android.library'
+    id 'de.mannodermaus.android-junit5'
+    id 'maven-publish'
+    id 'signing'
+}
+
+def libraryGroup    = 'io.github.neboskreb'
+def libraryArtifact = 'android-log4j2-migration'
+def libraryVersion  = '2.0-SNAPSHOT'
+
+afterEvaluate {
+    publishing {
+        repositories {
+            maven {
+                name = "github-packages"
+                url = uri("https://maven.pkg.github.com/neboskreb/android-log4j2")
+                credentials {
+                    username = project.findProperty("github_packages_user") ?: System.getenv("PACKAGES_USERNAME")
+                    password = project.findProperty("github_packages_token") ?: System.getenv("PACKAGES_TOKEN")
+                }
+            }
+            maven {
+                name "MavenCentral"
+                if (version.endsWith('SNAPSHOT')) {
+                    url = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
+                } else  {
+                    url = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
+                }
+                credentials {
+                    username = project.findProperty("mavenCentralUser") ?: System.getenv("MAVEN_USERNAME")
+                    password = project.findProperty("mavenCentralPass") ?: System.getenv("MAVEN_PASSWORD")
+                }
+            }
+        }
+
+        publications {
+            release(MavenPublication) {
+                group = libraryGroup
+                artifactId = libraryArtifact
+                version = libraryVersion
+
+                afterEvaluate {
+                    from components.release
+                }
+
+                pom {
+                    name = 'Migration from default Log to SLF4J'
+                    description = 'This package contains utility classes for easy migration to SLF4J on Android'
+                    url = 'https://github.com/neboskreb/android-log4j2'
+                    licenses {
+                        license {
+                            name = 'The Apache License, Version 2.0'
+                            url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        }
+                    }
+                    developers {
+                        developer {
+                            id = 'JBM'
+                            name = 'John Y. Pazekha'
+                            email = 'neboskreb@narod.ru'
+                        }
+                    }
+                    scm {
+                        connection = 'scm:git:git@github.com:neboskreb/android-log4j2.git'
+                        developerConnection = 'scm:git:ssh://github.com:neboskreb/android-log4j2.git'
+                        url = 'https://github.com/neboskreb/android-log4j2'
+                    }
+                }
+            }
+        }
+    }
+
+    signing {
+        sign publishing.publications.release
+    }
+}
+
+android {
+    namespace = 'com.github.neboskreb.log4j2'
+    compileSdk = 35
+
+    defaultConfig {
+        minSdk = 26
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+    }
+
+    publishing {
+        singleVariant("release") {
+            withJavadocJar()
+            withSourcesJar()
+        }
+    }
+}
+
+dependencies {
+    implementation 'androidx.annotation:annotation:1.9.1'
+    compileOnly 'org.slf4j:slf4j-api:[2.0.17, 3.0)'
+    compileOnly 'org.apache.logging.log4j:log4j-core:[2.24.3, 3.0)'
+}
