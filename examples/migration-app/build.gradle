@@ -1,0 +1,57 @@
+plugins {
+    id 'com.android.application'
+    id 'de.mannodermaus.android-junit5'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    namespace = 'com.github.neboskreb.log4j2.examples.migration'
+    compileSdk = 36
+
+    defaultConfig {
+        applicationId "com.github.neboskreb.log4j2.examples.migration"
+        minSdk = 26
+        targetSdk = 36
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig = signingConfigs.debug
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    dataBinding {
+        enable = true
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE*'
+    }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+}
+
+dependencies {
+    implementation(project(":examples:migration-lib"))
+    implementation 'androidx.core:core-ktx:1.17.0'
+
+    implementation 'io.github.neboskreb:android-log4j2-migration:2.0'
+    implementation 'io.github.neboskreb:android-log4j2:2.24'
+    // Though android-log4j2 brings Log4J2 in as a transitive dependency,
+    // it is always a good idea to pin the exact version:
+    implementation 'org.apache.logging.log4j:log4j-core:2.24.3'
+    implementation 'org.apache.logging.log4j:log4j-slf4j2-impl:2.24.3'
+}
