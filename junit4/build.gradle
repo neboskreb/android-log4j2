@@ -2,35 +2,21 @@ plugins {
     id 'com.android.library'
     id 'de.mannodermaus.android-junit5'
     id 'maven-publish'
-    id 'signing'
+    id 'org.jreleaser'
 }
 
 def libraryGroup    = 'io.github.neboskreb'
 def libraryArtifact = 'android-log4j2-junit4'
 def libraryVersion  = '2.24.1-SNAPSHOT'
 
+final stagingDirectory = layout.buildDirectory.dir('staging-deploy')
+
 afterEvaluate {
     publishing {
         repositories {
             maven {
-                name = "github-packages"
-                url = uri("https://maven.pkg.github.com/neboskreb/android-log4j2")
-                credentials {
-                    username = project.findProperty("github_packages_user") ?: System.getenv("PACKAGES_USERNAME")
-                    password = project.findProperty("github_packages_token") ?: System.getenv("PACKAGES_TOKEN")
-                }
-            }
-            maven {
-                name "MavenCentral"
-                if (version.endsWith('SNAPSHOT')) {
-                    url = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
-                } else  {
-                    url = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
-                }
-                credentials {
-                    username = project.findProperty("mavenCentralUser") ?: System.getenv("MAVEN_USERNAME")
-                    password = project.findProperty("mavenCentralPass") ?: System.getenv("MAVEN_PASSWORD")
-                }
+                name = 'staging'
+                url = stagingDirectory
             }
         }
 
@@ -71,8 +57,58 @@ afterEvaluate {
         }
     }
 
-    signing {
-        sign publishing.publications.release
+    jreleaser {
+        gitRootSearch = true
+        signing {
+            active = 'RELEASE'
+            armored = true
+            verify = false
+
+            version = libraryVersion
+
+            secretKey  = getConfiguredValue('signing.key.armored', 'PGP_SIGNING_KEY_ARMORED')
+            passphrase = getConfiguredValue('signing.password',    'PGP_SIGNING_PASSWORD')
+        }
+        deploy {
+            maven {
+                final String staging = stagingDirectory.get().toString()
+
+                github {
+                    packages {
+                        active = 'RELEASE'
+                        url = 'https://maven.pkg.github.com/neboskreb/android-log4j2'
+                        stagingRepository(staging)
+
+                        sign = true
+
+                        username = getConfiguredValue('github_packages_user', 'PACKAGES_USERNAME')
+                        password = getConfiguredValue('github_packages_token', 'PACKAGES_TOKEN')
+                    }
+                }
+
+                mavenCentral {
+                    sonatype {
+                        active = 'RELEASE'
+                        url = 'https://central.sonatype.com/api/v1/publisher'
+                        stagingRepository(staging)
+
+                        sign = true
+
+                        username = getConfiguredValue('mavenCentralUser', 'MAVEN_USERNAME')
+                        password = getConfiguredValue('mavenCentralPass', 'MAVEN_PASSWORD')
+
+                        // Android release contains .aar instead of .jar, which is not currently supported by the rules validator.
+                        // See https://github.com/jreleaser/jreleaser.github.io/issues/85
+                        // TODO re-enable the rules check once the .aar is supported
+                        applyMavenCentralRules = false
+                    }
+                }
+            }
+        }
+    }
+
+    tasks.named('jreleaserDeploy') {
+        dependsOn publishReleasePublicationToStagingRepository
     }
 }
 
@@ -120,4 +156,9 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.3.0'
     androidTestImplementation 'androidx.test:runner:1.7.0'
     androidTestImplementation 'junit:junit:4.13.2'
+}
+
+
+private String getConfiguredValue(String projectProperty, String environmentVariable) {
+    return project.findProperty(projectProperty) ?: System.getenv(environmentVariable)
 }
