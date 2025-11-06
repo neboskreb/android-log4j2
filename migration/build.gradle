@@ -2,7 +2,6 @@ plugins {
     id 'com.android.library'
     id 'de.mannodermaus.android-junit5'
     id 'maven-publish'
-    id 'signing'
     id 'org.jreleaser'
 }
 
@@ -15,14 +14,6 @@ final stagingDirectory = layout.buildDirectory.dir('staging-deploy')
 afterEvaluate {
     publishing {
         repositories {
-            maven {
-                name = "github-packages"
-                url = uri("https://maven.pkg.github.com/neboskreb/android-log4j2")
-                credentials {
-                    username = project.findProperty("github_packages_user") ?: System.getenv("PACKAGES_USERNAME")
-                    password = project.findProperty("github_packages_token") ?: System.getenv("PACKAGES_TOKEN")
-                }
-            }
             maven {
                 name = 'staging'
                 url = stagingDirectory
@@ -66,10 +57,6 @@ afterEvaluate {
         }
     }
 
-    signing {
-        sign publishing.publications.release
-    }
-
     jreleaser {
         gitRootSearch = true
         signing {
@@ -87,7 +74,16 @@ afterEvaluate {
                 final String staging = stagingDirectory.get().toString()
 
                 github {
-                    enabled = false
+                    packages {
+                        active = 'RELEASE'
+                        url = 'https://maven.pkg.github.com/neboskreb/android-log4j2'
+                        stagingRepository(staging)
+
+                        sign = true
+
+                        username = getConfiguredValue('github_packages_user', 'PACKAGES_USERNAME')
+                        password = getConfiguredValue('github_packages_token', 'PACKAGES_TOKEN')
+                    }
                 }
 
                 mavenCentral {
