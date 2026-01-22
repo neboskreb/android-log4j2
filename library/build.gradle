@@ -165,6 +165,7 @@ dependencies {
     // ==== /Lombok
 
 
+    // To avoid elevating the JAVA VERSION to 17, which is required by JUnit 6+, we shall keep using JUnit 5:
     testImplementation platform('org.junit:junit-bom:[5.14.0, 6.0)')
     testImplementation 'org.junit.jupiter:junit-jupiter-api'
     testImplementation 'org.junit.jupiter:junit-jupiter'
@@ -175,6 +176,7 @@ dependencies {
 
 
     androidTestImplementation 'androidx.test.ext:junit:1.3.0'
+    // To avoid elevating the JAVA VERSION to 17, which is required by JUnit 6+, we shall keep using JUnit 5:
     androidTestImplementation platform('org.junit:junit-bom:[5.14.0, 6.0)')
     androidTestImplementation 'org.junit.jupiter:junit-jupiter-api'
     androidTestImplementation 'org.junit.jupiter:junit-jupiter'
