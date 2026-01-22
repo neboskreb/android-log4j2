@@ -6,7 +6,7 @@ Yet another one. But this one works.
 * Seamless integration of Log4J over SLF4J into your Android application
 * File-based configuration of logging for fine control - just like in proper Java
 * Separate configurations for Debug, Release, JUnit tests, and Android tests 
-* Extension for JUnit 5
+* Extension for JUnit 5 and 6
 * Rule for JUnit 4
 * Easy migration from Android Log
 
@@ -56,8 +56,8 @@ Normally you don't want your tests to log anything. A properly written test prov
 
 However, if you _do_ need to change the loglevel, you can provide your configuration in `androidTest/assets/log4j2.properties` and configure your tests as follows: 
 
-### JUnit 5
-_NOTE: For instructions how to enable JUnit 5 in your Android project in the first place, please refer to [android-junit5](https://github.com/mannodermaus/android-junit5) plugin._
+### JUnit 5+
+_NOTE: For instructions how to enable JUnit 5+ in your Android project in the first place, please refer to [android-junit5](https://github.com/mannodermaus/android-junit5) plugin._
 
 ```groovy
 dependencies {
