@@ -1,7 +1,6 @@
 plugins {
     id 'com.android.application'
     id 'de.mannodermaus.android-junit5'
-    id 'org.jetbrains.kotlin.android'
 }
 
 android {
@@ -42,10 +41,6 @@ android {
         resources {
             excludes += ['META-INF/DEPENDENCIES', 'META-INF/LICENSE*']
         }
-    }
-
-    kotlinOptions {
-        jvmTarget = '17'
     }
 }
 
