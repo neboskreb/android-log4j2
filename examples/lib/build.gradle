@@ -36,7 +36,7 @@ android {
 dependencies {
     implementation 'org.slf4j:slf4j-api:2.0.17'
     implementation 'org.slf4j:slf4j-ext:2.0.17'
-    implementation 'androidx.core:core-ktx:1.17.0'
+    implementation 'androidx.core:core-ktx:1.18.0'
 
 
     testImplementation 'io.github.neboskreb:android-log4j2:2.24'
