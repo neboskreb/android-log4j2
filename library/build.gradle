@@ -150,7 +150,7 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.annotation:annotation:1.9.1'
+    implementation 'androidx.annotation:annotation:1.10.0'
     implementation 'com.google.code.findbugs:jsr305:3.0.2'
     // ==== Log4j
     //noinspection GradleDependency
