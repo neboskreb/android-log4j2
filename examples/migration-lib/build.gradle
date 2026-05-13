@@ -35,8 +35,8 @@ android {
 
 dependencies {
     implementation 'io.github.neboskreb:android-log4j2-migration:2.0'
-    implementation 'org.slf4j:slf4j-api:2.0.17'
-    implementation 'org.slf4j:slf4j-ext:2.0.17'
+    implementation 'org.slf4j:slf4j-api:2.0.18'
+    implementation 'org.slf4j:slf4j-ext:2.0.18'
     implementation 'androidx.core:core-ktx:1.18.0'
 
 
