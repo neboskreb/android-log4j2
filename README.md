@@ -117,7 +117,7 @@ dependencies {
 # File-based configuration of the logging level
 
 ## Location of config files
-The Log4J2 configuration file is called `log4j2.properties` and is found in the following locations:
+The Log4J2 configuration file is called `log4j2.xml` or `log4j2.properties` and is found in the following locations:
 1) for unit tests, nothing changed. It is where we always had it - in `src/test/resources`
 2) for Android tests, it is in `src/androidTest/assets`
 3) for application, it depends on the build variant:
@@ -152,12 +152,42 @@ logger.app.name = com.github.neboskreb.app
 logger.app.level = all
 ```
 
+or the same in `log4j2.xml` format:
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <!-- Direct log messages to LOGCAT -->
+        <Logcat name="LOGCAT" stack-trace-rendering="logcat">
+            <PatternLayout pattern="%m%n"/>
+        </Logcat>
+    </Appenders>
+    <Loggers>
+        <!-- Reduce the noise from the lib: -->
+        <Logger name="com.github.neboskreb.lib" level="warn"/>
+        <Logger name="com.github.neboskreb.app" level="all"/>
+        <Root level="all">
+            <AppenderRef ref="LOGCAT"/>
+        </Root>
+    </Loggers>
+</Configuration>
+```
+
 ## Logcat appender attributes
 
 ### stack-trace-rendering
 Select which engine to use for rendering the stack trace when logging the exceptions. Some Android tools might get confused with Log4J's stack traces.
 
 Options: `logcat` (default), `log4j2`
+
+## Performance considerations
+
+### In application
+From the app performance perspective, a .properties file is better than an XML file. It offers faster parsing, lower memory footprint, and smaller file size.
+Note that unlike `strings.xml`, your `log4j2.xml` is not pre-parsed by AGP plugin during the build; your application will have to parse it during the startup.
+
+### In tests
+For the Android/Unit tests the performance penalty is negligible. You can happily use XML format if it feels more familiar.
 
 # Logcat tags
 Tags in logcat are supported via `Markers`:
@@ -222,8 +252,6 @@ dependencies {
 
 Note: in your _library_, you should NOT include any specific version of Log4J because that might create dependency conflict in the consumer of your library.
 
-# Known issues
-* XML configuration is broken due to bug in Android XML parser. Fix is in progress; for now use `.properties` configuration.
 
 
 # Credits

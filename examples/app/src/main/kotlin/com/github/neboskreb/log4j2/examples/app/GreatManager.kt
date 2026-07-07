@@ -10,7 +10,7 @@ private val log: Logger = LogManager.getLogger(GreatManager::class.java)
  * Assume, this Manager uses a Worker to do stuff, and the worker prints messages to the log.
  *
  * Though you can't change the Worker's source from here, you can perfectly well control what it logs
- * from your log4j2.properties, and see the result here.
+ * from your log4j2.xml or log4j2.properties, and see the result here.
  */
 class GreatManager(
     private val worker: AwesomeWorker
