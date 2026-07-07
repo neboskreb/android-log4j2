@@ -6,6 +6,14 @@ plugins {
 }
 
 allprojects {
+    configurations.configureEach {
+        resolutionStrategy.dependencySubstitution {
+            substitute module("io.github.neboskreb:android-log4j2") using project(":library")
+            substitute module("io.github.neboskreb:android-log4j2-junit4") using project(":junit4")
+            substitute module("io.github.neboskreb:android-log4j2-junit5") using project(":junit5")
+            substitute module("io.github.neboskreb:android-log4j2-migration") using project(":migration")
+        }
+    }
 }
 
 
