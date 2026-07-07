@@ -12,7 +12,7 @@ import static net.loune.log4j2android.PluginProcessorHelper.injectPlugins;
  * Created by loune on 9/04/2016.
  */
 public class AndroidLog4jHelper {
-    public static final String FILENAME = "log4j2.properties";
+    public static final String[] FILENAME = {"log4j2.properties", "log4j2.xml"};
 
     private static ContextProxy savedContext;
 

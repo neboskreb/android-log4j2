@@ -15,11 +15,13 @@ class ContextProxy {
         this.contexts = contexts;
     }
 
-    public AutoCloseConfigDescriptor getConfig(String filename) {
+    public AutoCloseConfigDescriptor getConfig(String... filenames) {
         for (Context context : contexts) {
-            AutoCloseConfigDescriptor result = getConfig(context, filename);
-            if (result.config.isPresent()) {
-                return result;
+            for (String filename : filenames) {
+                AutoCloseConfigDescriptor result = getConfig(context, filename);
+                if (result.config.isPresent()) {
+                    return result;
+                }
             }
         }
 
