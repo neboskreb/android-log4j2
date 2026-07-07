@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace = 'com.github.neboskreb.log4j2.examples.app'
-    compileSdk = 36
+    compileSdk = 37
 
     defaultConfig {
         applicationId "com.github.neboskreb.log4j2.examples.app"
         minSdk = 26
-        targetSdk = 36
+        targetSdk = 37
         versionCode 1
         versionName "1.0"
 
