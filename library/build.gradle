@@ -7,7 +7,7 @@ plugins {
 
 def libraryGroup    = 'io.github.neboskreb'
 def libraryArtifact = 'android-log4j2'
-def libraryVersion  = '2.24.1-SNAPSHOT'
+def libraryVersion  = '2.26.0-SNAPSHOT'
 
 final stagingDirectory = layout.buildDirectory.dir('staging-deploy')
 
@@ -154,10 +154,10 @@ dependencies {
     implementation 'com.google.code.findbugs:jsr305:3.0.2'
     // ==== Log4j
     //noinspection GradleDependency
-    api 'org.apache.logging.log4j:log4j-slf4j2-impl:[2.24, 3.0)'
+    api 'org.apache.logging.log4j:log4j-slf4j2-impl:2.26.0'
     //noinspection GradleDependency, AnnotationProcessorOnCompilePath
-    api 'org.apache.logging.log4j:log4j-core:[2.24, 3.0)'
-//    annotationProcessor 'org.apache.logging.log4j:log4j-core:[2.24, 3.0)'
+    api 'org.apache.logging.log4j:log4j-core:2.26.0'
+//    annotationProcessor 'org.apache.logging.log4j:log4j-core:2.26.0'
     // ==== /Log4j
 
     // ==== Lombok
