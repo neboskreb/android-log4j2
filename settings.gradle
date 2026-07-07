@@ -9,7 +9,21 @@ pluginManagement {
         id 'com.android.application' version '9.2.1'
         id 'com.android.library' version '9.2.1'
         id 'de.mannodermaus.android-junit5' version '2.0.1'
-        id 'org.jreleaser' version '1.23.0'
+        id 'org.jreleaser' version '1.25.0'
+    }
+}
+
+// TODO: remove this block once Gradle catches up
+// This part is required only for JReleaser 1.25+ because the version Gradle offers out-of-the-box is too old.
+// Force Gradle to load the newer version from Maven Central:
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        // NO NEED to upgrade these unless JReleaser is upgraded:
+        classpath 'org.bouncycastle:bcprov-jdk18on:1.84'
+        classpath 'org.bouncycastle:bcpg-jdk18on:1.84'
     }
 }
 
