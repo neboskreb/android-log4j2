@@ -17,9 +17,9 @@ The example section shows the usage of SLF4J facade on the lib side and the log 
 
 ```groovy
 dependencies {
-    implementation 'io.github.neboskreb:android-log4j2:2.24'
+    implementation 'io.github.neboskreb:android-log4j2:2.26'
 
-    androidTestImplementation 'io.github.neboskreb:android-log4j2-junit5:2.24'
+    androidTestImplementation 'io.github.neboskreb:android-log4j2-junit5:2.26'
 }
 ```
 
@@ -61,7 +61,7 @@ _NOTE: For instructions how to enable JUnit 5+ in your Android project in the fi
 
 ```groovy
 dependencies {
-    androidTestImplementation 'io.github.neboskreb:android-log4j2-junit5:2.24'
+    androidTestImplementation 'io.github.neboskreb:android-log4j2-junit5:2.26'
 }
 ```
 
@@ -82,7 +82,7 @@ class MyJUnit5AndroidTest {
 
 ```groovy
 dependencies {
-    androidTestImplementation 'io.github.neboskreb:android-log4j2-junit4:2.24'
+    androidTestImplementation 'io.github.neboskreb:android-log4j2-junit4:2.26'
 }
 ```
 
@@ -108,7 +108,7 @@ No changes to the code required. Put your configuration in `test/resources/log4j
 
 ```groovy
 dependencies {
-    testImplementation 'io.github.neboskreb:android-log4j2:2.24'
+    testImplementation 'io.github.neboskreb:android-log4j2:2.26'
 }
 ```
 
@@ -242,11 +242,11 @@ See article [Migration](doc/migration/README.md) for more details.
 In your _application_, when you include library Android Log4J it will bring the latest version of Log4J as a transitive dependency. So theoretically, including only `io.github.neboskreb:android-log4j2:xxx` is enough. However, for better determinism it's always better to pin down the exact version of Log4J:
 ```groovy
 dependencies {
-    implementation 'io.github.neboskreb:android-log4j2:2.24'
+    implementation 'io.github.neboskreb:android-log4j2:2.26'
     // Though android-log4j2 brings Log4J2 in as a transitive dependency, 
     // it is always a good idea to pin the exact version:
-    implementation 'org.apache.logging.log4j:log4j-core:2.24.3'
-    implementation 'org.apache.logging.log4j:log4j-slf4j2-impl:2.24.3'
+    implementation 'org.apache.logging.log4j:log4j-core:2.26.1'
+    implementation 'org.apache.logging.log4j:log4j-slf4j2-impl:2.26.1'
 }
 ```
 
