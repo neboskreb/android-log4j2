@@ -8,6 +8,10 @@
 
   "packageRules": [
     {
+      "matchPackagePatterns": ["^io.github.neboskreb:android-log4j2"],
+      "groupName": "Android Log4J support"
+    },
+    {
       "matchPackagePatterns": ["androidx.room"],
       "groupName": "Android Room plugin & library"
     },
