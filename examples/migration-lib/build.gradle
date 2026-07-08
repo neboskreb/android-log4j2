@@ -40,14 +40,14 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.19.0'
 
 
-    testImplementation 'io.github.neboskreb:android-log4j2:2.24'
+    testImplementation 'io.github.neboskreb:android-log4j2:2.26'
     testImplementation platform('org.junit:junit-bom:6.1.1')
     testImplementation 'org.junit.jupiter:junit-jupiter-api'
     testImplementation 'org.junit.jupiter:junit-jupiter-params'
     testRuntimeOnly    'org.junit.jupiter:junit-jupiter-engine'
 
 
-    androidTestImplementation 'io.github.neboskreb:android-log4j2-junit5:2.24'
+    androidTestImplementation 'io.github.neboskreb:android-log4j2-junit5:2.26'
     androidTestImplementation platform('org.junit:junit-bom:6.1.1')
     androidTestImplementation 'org.junit.jupiter:junit-jupiter-api'
 }
