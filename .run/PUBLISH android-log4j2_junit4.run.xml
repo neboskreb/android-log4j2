@@ -2,7 +2,7 @@
   <configuration default="false" name="PUBLISH android-log4j2:junit4" type="GradleRunConfiguration" factoryName="Gradle" folderName="PUBLISH">
     <ExternalSystemSettings>
       <option name="executionName" />
-      <option name="externalProjectPath" value="~\Desktop\CONTRIB\android-log4j2\junit4" />
+      <option name="externalProjectPath" value="$PROJECT_DIR$/junit4" />
       <option name="externalSystemIdString" value="GRADLE" />
       <option name="scriptParameters" value="" />
       <option name="taskDescriptions">
