@@ -22,7 +22,7 @@ buildscript {
     }
     dependencies {
         // NO NEED to upgrade these unless JReleaser is upgraded:
-        classpath 'org.bouncycastle:bcprov-jdk18on:1.84'
+        classpath 'org.bouncycastle:bcprov-jdk18on:1.85'
         classpath 'org.bouncycastle:bcpg-jdk18on:1.84'
     }
 }
